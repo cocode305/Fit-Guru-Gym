@@ -28,7 +28,7 @@
     </style>
 </head>
 <body class="font-[Rubik]">
-    <header class="bg-[url('./images/hero-bg.png')] bg-center bg-no-repeat bg-cover w-full lg:min-h-dvh relative overflow-hidden">
+    <header class="bg-[url('./images/hero-bg.png')] bg-center bg-no-repeat bg-cover w-full lg:min-h-screen relative overflow-hidden">
         <div class="container mx-auto px-5 h-full">
             <!-- Header Wrapper -->
             <div class="py-10">
@@ -48,18 +48,18 @@
                     <div><button class="bg-white text-sm text-black px-4 py-2 rounded-sm font-medium cursor-pointer">Join Now</button></div>
                 </nav>
                 <!-- Hero Text Section -->
-                <div class="h-full mt-16 lg:mt-[155px]">
+                <div class="h-full mt-10 lg:mt-[155px]">
                     <div class="text-center lg:text-left lg:w-[512px]">
-                            <h1 class="font-black text-[#E0E0E0] text-6xl md:text-7xl">Elevate your workout</h1>
-                            <p class="text-[#BDBDBD] text-base mt-6">Transform your energy, power, and mindset.
-                            Train with purpose, challenge your limits, and discover what your body is truly capable of.</p>
-                            <button class="bg-white text-sm text-black px-4 py-2 rounded-sm font-medium cursor-pointer mt-16">Get Started</button>
-                            <ul class="flex justify-center lg:justify-start gap-4 mt-8">
-                                <li><a href="#" class="text-white"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#" class="text-white"><i class="fa-brands fa-facebook"></i></a></li>
-                                <li><a href="#" class="text-white"><i class="fa-brands fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
+                        <h1 class="font-black text-[#E0E0E0] text-5xl md:text-7xl">Elevate your workout</h1>
+                        <p class="text-[#BDBDBD] text-base mt-6">Transform your energy, power, and mindset.
+                        Train with purpose, challenge your limits, and discover what your body is truly capable of.</p>
+                        <button class="bg-white text-sm text-black px-4 py-2 rounded-sm font-medium cursor-pointer mt-16">Get Started</button>
+                        <ul class="flex justify-center lg:justify-start gap-4 mt-8">
+                            <li><a href="#" class="text-white"><i class="fa-brands fa-twitter"></i></a></li>
+                            <li><a href="#" class="text-white"><i class="fa-brands fa-facebook"></i></a></li>
+                            <li><a href="#" class="text-white"><i class="fa-brands fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -199,7 +199,7 @@
     </section>
 
     <!-- Coaches Section -->
-    <section class=" py-15 xl:p-20">
+    <section class=" py-10 xl:p-20">
         <div class="container mx-auto px-5">
             <!-- Coaches Container -->
             <div class="grid lg:grid-cols-[1fr_2fr] gap-20 lg:px-6 xl:px-16">
@@ -226,7 +226,7 @@
     </section>
 
     <!-- Trainers Section -->
-    <section class="py-25">
+    <section class="py-10 lg:py-25">
         <div class="container mx-auto px-5">
             <!-- Wrapper -->
             <div>
@@ -248,6 +248,153 @@
                         <span class="lg:h-[288px] rounded-lg overflow-hidden"><img src="./images/trainer-5.jpeg" alt="Trainer"></span>
                         <span class="lg:h-[288px] rounded-lg overflow-hidden"><img src="./images/trainer-6.jpeg" alt="Trainer"></span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Table -->
+    <section class="py-10 lg:py-17">
+        <div class="container mx-auto px-5">
+            <div class="flex flex-col lg:flex-row gap-5 lg:items-center lg:justify-between">
+                <div>
+                    <h5 class="text-[#9E9E9E] text-2xl">Pricing Plan</h5>
+                    <h1 class="text-[#212121] text-4xl font-bold uppercase mt-4">join today</h1>
+                </div>
+
+                <div class="w-fit">
+                    <!-- Wrapper -->
+                    <div class="flex items-center gap-4 p-3 rounded-2xl shadow-[0px_5px_15px_2px_rgba(0,0,0,0.4)]">
+                        <span>
+                            <label for="monthly" class="py-2 px-4 rounded-lg cursor-pointer">Monthly</label>
+                            <input type="checkbox" name="monthly" id="monthly" class="hidden">
+                        </span>
+                        <span>
+                            <label for="yearly" class="py-2 px-4 rounded-lg bg-[#212121] text-white cursor-pointer">Yearly</label>
+                            <input type="checkbox" name="yearly" id="yearly" class="hidden">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Price Tags Wrapper -->
+            <div class="flex flex-col lg:flex-row gap-12 mt-10 lg:mt-20">
+                <!-- First Price Tag -->
+                <div class="p-5 pt-7 shadow-[0px_0px_8px_2px_rgba(0,0,0,0.7)] hover:shadow-[0px_0px_12px_2px_rgba(0,0,0,0.7)] hover:scale-101 transform-scale duration-500 ease rounded-lg flex flex-col justify-between">
+                    <div>
+                        <!-- Heading -->
+                        <div>
+                            <h6 class="text-[#757575] text-base font-medium">Beginner Plan</h6>
+                            <h1 class="text-[#424242] text-4xl font-black mt-2">$10 <span class="text-lg">/ Month</span></h1>
+                        </div>
+                        <p class="text-[#9E9E9E] text-sm mt-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, deleniti!</p>
+                        <ul class="text-[#757575] mt-8 space-y-3">
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="w-full block py-4 mt-30 bg-[#424242] text-center text-white text-xl font-bold rounded-lg">Choose Plan</a>
+                </div>
+
+                <!-- Second Price Tag -->
+                <div class="p-5 pt-7 bg-[#212121] text-white shadow-[0px_0px_8px_2px_rgba(0,0,0,0.7)] hover:shadow-[0px_0px_12px_2px_rgba(0,0,0,0.7)] hover:scale-101 transform-scale duration-500 ease rounded-lg flex flex-col justify-between">
+                    <div>
+                        <!-- Heading -->
+                        <div>
+                            <h6 class=" text-base font-medium">Premium Plan</h6>
+                            <h1 class=" text-4xl font-black mt-2">$15 <span class="text-lg">/ Month</span></h1>
+                        </div>
+                        <p class="mt-4 text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, deleniti!</p>
+                        <ul class="mt-8 space-y-3">
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-white text-xs text-[#212121]"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-white text-xs text-[#212121]"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-white text-xs text-[#212121]"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-white text-xs text-[#212121]"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-white text-xs text-[#212121]"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="w-full block py-4 mt-30 bg-white text-center text-[#212121] text-xl font-bold rounded-lg">Choose Plan</a>
+                </div>
+
+                <!-- Third Price Tag -->
+                <div class="p-5 pt-7 shadow-[0px_0px_8px_2px_rgba(0,0,0,0.7)] hover:shadow-[0px_0px_12px_2px_rgba(0,0,0,0.7)] hover:scale-101 transform-scale duration-500 ease rounded-lg flex flex-col justify-between">
+                    <div>
+                        <!-- Heading -->
+                        <div>
+                            <h6 class="text-[#757575] text-base font-medium">Premium Plan</h6>
+                            <h1 class="text-[#424242] text-4xl font-black mt-2">$20 <span class="text-lg">/ Month</span></h1>
+                        </div>
+                        <p class="text-[#9E9E9E] text-sm mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, deleniti!</p>
+                        <ul class="text-[#757575] mt-8 space-y-3">
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-5 h-5 p-2 flex items-center justify-center rounded-full bg-[#757575] text-xs text-white"><i
+                                        class="fa-solid fa-check"></i></span>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="w-full block py-4 mt-30 bg-[#424242] text-center text-white text-xl font-bold rounded-lg">Choose Plan</a>
                 </div>
             </div>
         </div>
