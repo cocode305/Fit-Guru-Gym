@@ -25,6 +25,10 @@
             height: 100%;
             object-fit: cover;
         }
+        .active_plan {
+            background: #212121;
+            color: #fff;
+        }
     </style>
 </head>
 <body class="font-[Rubik]">
@@ -253,38 +257,35 @@
         </div>
     </section>
 
-    <!-- Pricing Table -->
+    <!-- Gym Membership Package Plan -->
     <section class="py-10 lg:py-17">
         <div class="container mx-auto px-5">
+            <!-- Package Wrapper -->
             <div class="flex flex-col lg:flex-row gap-5 lg:items-center lg:justify-between">
                 <div>
-                    <h5 class="text-[#9E9E9E] text-2xl">Pricing Plan</h5>
+                    <h5 class="text-[#9E9E9E] text-2xl">Package Plan</h5>
                     <h1 class="text-[#212121] text-4xl font-bold uppercase mt-4">join today</h1>
                 </div>
 
-                <div class="w-fit">
-                    <!-- Wrapper -->
+                <div class="w-full lg:w-auto">
+                    <!-- Subscription Duration Plan -->
                     <div class="flex items-center gap-4 p-3 rounded-2xl shadow-[0px_5px_15px_2px_rgba(0,0,0,0.4)]">
-                        <span>
-                            <label for="monthly" class="py-2 px-4 rounded-lg cursor-pointer">Monthly</label>
-                            <input type="checkbox" name="monthly" id="monthly" class="hidden">
-                        </span>
-                        <span>
-                            <label for="yearly" class="py-2 px-4 rounded-lg bg-[#212121] text-white cursor-pointer">Yearly</label>
-                            <input type="checkbox" name="yearly" id="yearly" class="hidden">
-                        </span>
+                        <span id="monthlyPlan" class="w-1/2 lg:w-auto py-2 px-4 rounded-lg cursor-pointer">Monthly</span>
+
+                        <span id="yearlyPlan" class="w-1/2 lg:w-auto py-2 px-4 rounded-lg cursor-pointer active_plan">Yearly</span>
                     </div>
                 </div>
             </div>
-            <!-- Price Tags Wrapper -->
-            <div class="flex flex-col lg:flex-row gap-12 mt-10 lg:mt-20">
-                <!-- First Price Tag -->
+            <!-- Subscription Package Wrapper -->
+            <div class="grid [grid-template-columns:repeat(auto-fit,minmax(412px,_1fr))] gap-12 mt-10 lg:mt-20">
+                <!-- Beginner Package Plan -->
                 <div class="p-5 pt-7 shadow-[0px_0px_8px_2px_rgba(0,0,0,0.7)] hover:shadow-[0px_0px_12px_2px_rgba(0,0,0,0.7)] hover:scale-101 transform-scale duration-500 ease rounded-lg flex flex-col justify-between">
+                    <!-- Text Container -->
                     <div>
                         <!-- Heading -->
                         <div>
                             <h6 class="text-[#757575] text-base font-medium">Beginner Plan</h6>
-                            <h1 class="text-[#424242] text-4xl font-black mt-2">$10 <span class="text-lg">/ Month</span></h1>
+                            <h1 class="text-[#424242] text-4xl font-black mt-2">$<span id="beginnerAmount">10</span> <span class="text-lg">/ Month</span></h1>
                         </div>
                         <p class="text-[#9E9E9E] text-sm mt-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, deleniti!</p>
                         <ul class="text-[#757575] mt-8 space-y-3">
@@ -310,13 +311,14 @@
                     <a href="#" class="w-full block py-4 mt-30 bg-[#424242] text-center text-white text-xl font-bold rounded-lg">Choose Plan</a>
                 </div>
 
-                <!-- Second Price Tag -->
+                <!-- Regular Package Plan -->
                 <div class="p-5 pt-7 bg-[#212121] text-white shadow-[0px_0px_8px_2px_rgba(0,0,0,0.7)] hover:shadow-[0px_0px_12px_2px_rgba(0,0,0,0.7)] hover:scale-101 transform-scale duration-500 ease rounded-lg flex flex-col justify-between">
+                    <!-- Text Container -->
                     <div>
                         <!-- Heading -->
                         <div>
                             <h6 class=" text-base font-medium">Premium Plan</h6>
-                            <h1 class=" text-4xl font-black mt-2">$15 <span class="text-lg">/ Month</span></h1>
+                            <h1 class=" text-4xl font-black mt-2">$<span id="regularAmount">15</span> <span class="text-lg">/ Month</span></h1>
                         </div>
                         <p class="mt-4 text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, deleniti!</p>
                         <ul class="mt-8 space-y-3">
@@ -351,13 +353,14 @@
                     <a href="#" class="w-full block py-4 mt-30 bg-white text-center text-[#212121] text-xl font-bold rounded-lg">Choose Plan</a>
                 </div>
 
-                <!-- Third Price Tag -->
+                <!-- Premium Package Plan -->
                 <div class="p-5 pt-7 shadow-[0px_0px_8px_2px_rgba(0,0,0,0.7)] hover:shadow-[0px_0px_12px_2px_rgba(0,0,0,0.7)] hover:scale-101 transform-scale duration-500 ease rounded-lg flex flex-col justify-between">
+                    <!-- Text Container -->
                     <div>
                         <!-- Heading -->
                         <div>
                             <h6 class="text-[#757575] text-base font-medium">Premium Plan</h6>
-                            <h1 class="text-[#424242] text-4xl font-black mt-2">$20 <span class="text-lg">/ Month</span></h1>
+                            <h1 class="text-[#424242] text-4xl font-black mt-2">$<span id="premiumAmount">20</span> <span class="text-lg">/ Month</span></h1>
                         </div>
                         <p class="text-[#9E9E9E] text-sm mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, deleniti!</p>
                         <ul class="text-[#757575] mt-8 space-y-3">
@@ -399,5 +402,38 @@
             </div>
         </div>
     </section>
+
+
+
+
+    <script>
+        // Gym Membership Package Plan
+        // Price Plan Variables
+        const monthlyPlan = document.getElementById('monthlyPlan');
+        const yearlyPlan = document.getElementById('yearlyPlan');
+
+        // Plan Amount Variables
+        const beginnerAmount  = document.getElementById('beginnerAmount');
+        const regularAmount  = document.getElementById('regularAmount');
+        const premiumAmount  = document.getElementById('premiumAmount');
+
+
+        monthlyPlan.addEventListener('click', () => {
+            yearlyPlan.classList.remove('active_plan');
+            monthlyPlan.classList.add('active_plan');
+
+            beginnerAmount.innerHTML = "12";
+            regularAmount.innerHTML = "18";
+            premiumAmount.innerHTML = "25";
+        });
+        yearlyPlan.addEventListener('click', () => {
+            monthlyPlan.classList.remove('active_plan');
+            yearlyPlan.classList.add('active_plan');
+
+            beginnerAmount.innerHTML = "10";
+            regularAmount.innerHTML = "15";
+            premiumAmount.innerHTML = "20";
+        });
+    </script>
 </body>
 </html>
