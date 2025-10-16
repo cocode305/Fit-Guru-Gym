@@ -19,17 +19,7 @@
     <script src="https://kit.fontawesome.com/6f18932376.js" crossorigin="anonymous"></script>
     <title>Fit Guru Gym</title>
 
-    <style>
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .active_plan {
-            background: #212121;
-            color: #fff;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="font-[Rubik]">
     <header class="bg-[url('./images/hero-bg.png')] bg-center bg-no-repeat bg-cover w-full lg:min-h-screen relative overflow-hidden">
@@ -257,6 +247,9 @@
         </div>
     </section>
 
+
+
+
     <!-- Gym Membership Package Plan -->
     <section class="py-10 lg:py-17">
         <div class="container mx-auto px-5">
@@ -403,6 +396,8 @@
     </section>
 
 
+
+
     <!-- Reviews Section -->
     <section class="py-10 lg:py-24">
         <div class="container mx-auto px-5">
@@ -431,11 +426,11 @@
                     </div>
 
                     <!-- Review Text Content and Slides -->
-                    <div class="px-6 lg:mt-13">
+                    <div class="px-6 lg:mt-13 next overflow-hidden" id="review_slides"> <!-- Remove border class -->
                         <!-- Review Slide Wrapper -->
-                        <div class="py-5 flex gap-6">
+                        <div id="slide_track" class="py-5 flex gap-6 relative">
                             <!-- First Review Slide -->
-                            <div class="flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px]">
+                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide previousSlide">
                                 <div>
                                     <h3 class="text-2xl text-[#424242] font-semibold">Kerry Rohan</h3>
                                     <span class="text-base text-[#424242]">&#9733;&#9733;&#9733;&#9733;<span class="opacity-20">&#9733;</span></span>
@@ -446,7 +441,7 @@
                             </div>
 
                             <!-- Second Review Slide -->
-                            <div class="flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px]">
+                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide active">
                                 <div>
                                     <h3 class="text-2xl text-[#424242] font-semibold">Stephnie Wonzh</h3>
                                     <span class="text-base text-[#424242]">&#9733;&#9733;&#9733;&#9733;<span class="opacity-20">&#9733;</span></span>
@@ -457,7 +452,18 @@
                             </div>
 
                             <!-- Third Review Slide -->
-                            <div class="flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px]">
+                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide nextSlide">
+                                <div>
+                                    <h3 class="text-2xl text-[#424242] font-semibold">Jeff West</h3>
+                                    <span class="text-base text-[#424242]">&#9733;&#9733;&#9733;&#9733;<span class="opacity-20">&#9733;</span></span>
+                                </div>
+                            
+                                <!-- Text Content -->
+                                <p class="text-sm text-[#757575] mt-6">“I used to struggle with staying consistent, but this gym completely changed that. The programs are structured, the coaches are motivating, and the environment keeps me focused. I’ve seen more progress here in two months than in years
+                                of training alone.”</p>
+                            </div>
+                            <!-- Fourth Review Slide -->
+                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide">
                                 <div>
                                     <h3 class="text-2xl text-[#424242] font-semibold">Blair J. Wills</h3>
                                     <span class="text-base text-[#424242]">&#9733;&#9733;&#9733;&#9733;<span class="opacity-20">&#9733;</span></span>
@@ -470,15 +476,18 @@
                         </div>
 
                         <!-- Review Slide Navigation Arrows -->
-                        <div class="mt-4 flex items-center gap-2.5">
-                            <button class="w-[45px] h-[45px] bg-[#424242] text-3xl text-white   rounded-full cursor-pointer">&#10094;</button>
-                            <button class="w-[45px] h-[45px] border-2 border-[#424242] text-3xl text-[#424242]  rounded-full cursor-pointer">&#10095;</button>
+                        <div class="mt-4 hidden lg:flex items-center gap-2.5">
+                            <button id="prev" class="w-[45px] h-[45px] bg-[#424242] text-3xl text-white rounded-full cursor-pointer">&#10094;</button>
+                            <button id="next" class="w-[45px] h-[45px] border-2 border-[#424242] text-3xl text-[#424242]  rounded-full cursor-pointer">&#10095;</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+
 
 
     <!-- Contact Us Section -->
@@ -491,6 +500,9 @@
             </div>
         </div>
     </section>
+
+
+
 
     <footer class="py-10 lg:py-23 lg:px-26">
         <div class="container mx-auto px-5">
@@ -773,34 +785,6 @@
 
 
 
-    <script>
-        // Gym Membership Package Plan
-        // Price Plan Variables
-        const monthlyPlan = document.getElementById('monthlyPlan');
-        const yearlyPlan = document.getElementById('yearlyPlan');
-
-        // Plan Amount Variables
-        const beginnerAmount  = document.getElementById('beginnerAmount');
-        const regularAmount  = document.getElementById('regularAmount');
-        const premiumAmount  = document.getElementById('premiumAmount');
-
-
-        monthlyPlan.addEventListener('click', () => {
-            yearlyPlan.classList.remove('active_plan');
-            monthlyPlan.classList.add('active_plan');
-
-            beginnerAmount.innerHTML = "12";
-            regularAmount.innerHTML = "18";
-            premiumAmount.innerHTML = "25";
-        });
-        yearlyPlan.addEventListener('click', () => {
-            monthlyPlan.classList.remove('active_plan');
-            yearlyPlan.classList.add('active_plan');
-
-            beginnerAmount.innerHTML = "10";
-            regularAmount.innerHTML = "15";
-            premiumAmount.innerHTML = "20";
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
