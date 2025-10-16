@@ -36,108 +36,185 @@ const nextBtn = document.getElementById('next');
 // Review Slide Container
 const slideTrack = document.getElementById('slide_track');
 const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-const slideWidth = function () {
-  return slides[0].offsetWidth + 24;
-};
-
+const originalSlideCount = slides.length;
 
 let index = 1;
 let isAnimating = false;
 
+
+function getGap() {
+  const style = getComputedStyle(slideTrack);
+  const gap = style.gap || style.columnGap || style.columngap || '0px';
+  return parseFloat(gap) || 0;
+}
+function getSlideWidth() {
+  const first = document.querySelector('.slide');
+  if (!first) return 0;
+  return first.offsetWidth + getGap();
+}
+
 // Clone first and last slides
 const firstSlide = slides[0].cloneNode(true);
-const lastSlide = slides[totalSlides - 1].cloneNode(true);
+const lastSlide = slides[originalSlideCount - 1].cloneNode(true);
 
 
 slideTrack.appendChild(firstSlide);
 slideTrack.insertBefore(lastSlide, slideTrack.firstChild);
 
+// All slides including cloned slides.
+let allSlides = document.querySelectorAll('.slide');
 
-const allSlides = document.querySelectorAll('.slide');
-slideTrack.style.transform = `translateX(${-slideWidth * index}px)`
+
+function jumpToIndex(idx, withTransition = false) {
+  const width = getSlideWidth();
+
+  if (withTransition) {
+    slideTrack.style.transition = 'transform 0.5s ease-in-out'
+  } else {
+    slideTrack.style.transition = 'none'
+  }
+  slideTrack.style.transform = `translateX(${-width * idx}px)`;
+}
+jumpToIndex(index, false);
+
+
+function nextSlide() {
+  if (isAnimating) return;
+  isAnimating = true;
+  index++;
+  jumpToIndex(index, true);
+}
+
+
+function prevSlide() {
+  if (isAnimating) return;
+  isAnimating = true;
+  index--;
+  jumpToIndex(index, true);
+};
 
 
 nextBtn.addEventListener('click', nextSlide);
 prevBtn.addEventListener('click', prevSlide); 
   
 
-function nextSlide() {
-  if (isAnimating) return;
-  isAnimating = true;
-
-  index++;
-  slideTrack.style.transition = 'transform 0.5s ease-in-out';
-  slideTrack.style.transform = `translateX(${-slideWidth() * index}px)`
-}
-
-
-  
-function prevSlide() {
-  if (isAnimating) return;
-  isAnimating = true;
-
-  index--;
-  slideTrack.style.transition = 'transform 0.5s ease-in-out';
-  slideTrack.style.transform = `translateX(${-slideWidth() * index}px)`
-};
-
-
 // Handle Loop
 slideTrack.addEventListener('transitionend', () => {
-  if (index === allSlides.length - 1) {
-    slideTrack.style.transition = 'none';
+  allSlides = Array.from(document.querySelectorAll('.slide'));
+  const lastIndex = allSlides.length - 1;
+  
+  
+  if (index === lastIndex) {
     index = 1;
-    slideTrack.style.transform = `translateX(${-slideWidth() * index}px)`
+    jumpToIndex(index, false);
 
   }
+
 
   if (index === 0) {
-    slideTrack.style.transition = 'none';
-    index = totalSlides;
-    slideTrack.style.transform = `translateX(${-slideWidth() * index}px)`
+    index = originalSlideCount;
+    jumpToIndex(index, false);
   }
-  isAnimating = false;
+  setTimeout(() => { isAnimating = false; }, 20);
+  if (!autoPlayInterval) startAutoPlay();
 });
 
 
-
+  
 // Swipe Gesture For Mobile
 let startX = 0;
 let currentX = 0;
 let isDragging = false;
 
 
-slideTrack.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
+slideTrack.addEventListener('touchstart', touchStart, {passive: true});
+slideTrack.addEventListener('touchmove', touchMove, {passive: true});
+slideTrack.addEventListener('touchend', touchEnd, {passive: true});
+
+
+function touchStart(e) {
+  if (isAnimating) return;
+  const touch = e.touches[0];
+  startX = touch.clientX;
+  currentX = startX;
   isDragging = true;
-  slideTrack.style.transition = 'none';
-});
+  slideTrack.style.transition = 'none'
+}
 
 
-slideTrack.addEventListener('touchmove', (e) => {
+function touchMove(e) {
   if (!isDragging) return;
-  currentX = e.touches[0].clientX;
+  const touch = e.touches[0];
+  currentX = touch.clientX;
   const diff = currentX - startX;
-  slideTrack.style.transform = `translateX(${-slideWidth() * index + diff}px)`
-});
+  const w = getSlideWidth;
+  slideTrack.style.transform = `translateX(${ -w * index + diff }px)`
+}
 
 
-slideTrack.addEventListener('touchend', () => {
+function touchEnd() {
   if (!isDragging) return;
+  isDragging = false;
   const diff = currentX - startX;
-  const threshold = 50; // Minimum swipe distance
+  const threshold = Math.max(40, getSlideWidth() * 0.15); // Minimum swipe distance
 
-  if (diff > threshold) {
+
+  if (diff > threshold) { 
     prevSlide();
   } else if (diff < -threshold) {
     nextSlide();
   } else {
-    // Snap back to original position if swipe not far eneough
-    slideTrack.style.transform = 'transform 0.3s ease-in-out';
-    slideTrack.style.transform = `transition(${-slideWidth() * index}px)`
+    jumpToIndex(index, true);
   }
 
 
-  isDragging = false;
+  startX = 0;
+  currentX = 0;
+}
+
+
+
+window.addEventListener('resize', () => {
+  clearTimeout(window._sliderResizeTimer);
+  window._sliderResizeTimer = setTimeout(() => {
+    jumpToIndex(index, false);
+  }, 80);
 });
+
+
+let autoPlayInterval;
+const autoPlayDelay = 5000;
+
+
+function startAutoPlay() {
+  stopAutoPlay();
+  autoPlayInterval = setInterval(() => {
+    nextSlide();
+  }, autoPlayDelay);
+}
+
+function stopAutoPlay() {
+  if (autoPlayInterval) {
+    clearInterval(autoPlayInterval);
+    autoPlayInterval = null;
+  }
+}
+
+slideTrack.addEventListener('mouseenter', stopAutoPlay);
+slideTrack.addEventListener('mouseleave', startAutoPlay);
+
+
+prevBtn.addEventListener('mouseenter', stopAutoPlay);
+prevBtn.addEventListener('mouseleave', startAutoPlay);
+
+
+nextBtn.addEventListener('mouseenter', stopAutoPlay);
+nextBtn.addEventListener('mouseleave', startAutoPlay);
+
+
+
+slideTrack.addEventListener('touchstart', stopAutoPlay);
+
+
+slideTrack.addEventListener('touchend', startAutoPlay);
+startAutoPlay()
