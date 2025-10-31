@@ -10,3 +10,32 @@ img {
 .close_mnav {
     transform: translateX(-100%);
 }
+
+
+.star.active {
+    animation: animate .5s calc(var(--i) * .1s) ease-in-out;
+}
+
+.animate {
+    animation: animateReview .5s ease-in-out forwards;
+}
+
+@keyframes animateReview {
+    from {
+        transform: scale(0);
+    } to {
+        transform: scale(1);
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

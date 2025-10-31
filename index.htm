@@ -21,8 +21,11 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="font-[Rubik]">
-    <header class="bg-[url('./images/hero-bg.png')] bg-center bg-no-repeat bg-cover w-full lg:min-h-screen relative">
+<body class="font-[Rubik] relative">
+    <!-- Overlay -->
+    <div id="overlay" class="hidden w-full h-full bg-black opacity-50 absolute z-10"></div>
+
+    <header id="home" class="bg-[url('./images/hero-bg.png')] bg-center bg-no-repeat bg-cover w-full lg:min-h-screen relative">
         <div class="container mx-auto px-5 h-full">
             <!-- Header Wrapper -->
             <div class="py-10">
@@ -34,10 +37,13 @@
                         </span>
 
                         <!-- Mobile Nav Open button -->
-                        <button id="open_mnav-btn" class="lg:hidden text-white text-3xl cursor-pointer"><i class="fa-solid fa-bars"></i></button>
+                        <button id="open_mnav-btn" class="lg:hidden text-white text-3xl cursor-pointer border-0">
+                            <!-- <i class="fa-solid fa-bars"></i> -->
+                            &#9776;
+                        </button>
                     </div>
                     
-                    <div id="mnav_menu" class="flex flex-col lg:flex-row lg:justify-between max-lg:w-full max-lg:h-screen lg:basis-[70%] max-lg:fixed top-0 left-0 z-10 bg-white lg:bg-transparent max-lg:px-5 max-lg:py-10 max-lg:translate-x-full">
+                    <div id="mnav_menu" class="flex flex-col lg:flex-row lg:justify-between max-lg:w-full max-lg:h-screen lg:basis-[70%] max-lg:fixed top-0 left-0 z-50 bg-white lg:bg-transparent max-lg:px-5 max-lg:py-10 max-lg:-translate-x-full max-lg:transition-transform duration-500 ease max-lg:opacity-10">
                         <!-- Logo and Close mobile nav menu button -->
                         <div class="lg:hidden flex justify-between">
                             <!-- Dark Logo -->
@@ -254,18 +260,21 @@
                                 </a>
                             </span>
 
-                            <button id="close_mnav-btn" class="text-2xl text-[#212121] cursor-pointer">
-                                <i class="fa-solid fa-xmark"></i>
+                            <button id="close_mnav-btn" class="text-2xl text-[#212121] font-medium cursor-pointer">
+                                <!-- <i class="fa-solid fa-xmark"></i> -->
+                                <!-- &#10005; -->
+                                &#10006;
+                                <!-- &#100018; -->
                             </button>
                         </div>
 
                         <!-- Nav Links and CTA Button -->
                         <div class=" h-full lg:w-full max-lg:mt-10 flex flex-col lg:flex-row justify-between lg:items-center">
                             <ul class="flex flex-col lg:flex-row gap-10 lg:gap-4 text-[#111111] lg:text-[#9E9E9E] text-xl lg:text-base">
-                                <li><a href="#" class="lg:text-white">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="#home" class="lg:text-white mnav_link">Home</a></li>
+                                <li><a href="#about-us" class="mnav_link">About</a></li>
+                                <li><a href="#" class="mnav_link">Services</a></li>
+                                <li><a href="#contact" class="mnav_link">Contact</a></li>
                             </ul>
             
                             <!-- Sign Up Button -->
@@ -296,7 +305,7 @@
     </header>
 
 
-    <!-- Review Stats -->
+    <!-- Our Stats -->
     <div class="bg-[#111111]">
         <div class="container mx-auto px-5">
             <!-- Review wrapper -->
@@ -326,7 +335,7 @@
     </div>
 
     <!-- Why Choose Us Section -->
-    <section>
+    <section id="about-us">
         <div class="container mx-auto px-5">
             <!-- Why Choose Us Wrapper -->
             <div class="py-[80px] lg:py-[122px]">
@@ -635,14 +644,45 @@
     <section class="py-10 lg:py-24">
         <div class="container mx-auto px-5">
             <!-- Review Wrapper -->
-            <div>
+            <div class="relative">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div>
                         <h5 class="text-[#9E9E9E] text-2xl">Reviews</h5>
                         <h1 class="text-[#212121] text-4xl font-bold uppercase mt-4">your opinions</h1>
                     </div>
 
-                    <button class="w-fit md:w-auto bg-[#212121] text-white text-sm text-black px-4 py-2 rounded-sm font-medium cursor-pointer mt-12">&#43; Your Opinions</button>
+                    <button id="opinion-btn" class="w-fit md:w-auto bg-[#212121] text-white text-sm text-black px-4 py-2 rounded-sm font-medium cursor-pointer mt-12">&#43; Your Opinions</button>
+                </div>
+
+                <!-- User Comment Form Section -->
+                <div id="review_form-container" class="hidden w-full flex justify-center items-center absolute top-30 z-15">
+                    <form action="#" class="w-full lg:w-3/4 bg-white rounded-2xl shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] overflow-hidden animate" id="review_form">
+                        <!-- Form Wrapper -->
+                        <div class="flex flex-col p-5">
+                            <h3 class="capitalize text-3xl text-[#424242] font-medium mb-4">give feedback</h3>
+                            <!-- Star Rating -->
+                            <div class="flex mb-4">
+                                <input type="number" name="rating" id="rating" hidden>
+                                <span class="text-5xl text-[#ccc] cursor-pointer star" style="--i: 0;">&#9733;</span>
+                                <span class="text-5xl text-[#ccc] cursor-pointer star" style="--i: 1;">&#9733;</span>
+                                <span class="text-5xl text-[#ccc] cursor-pointer star" style="--i: 2;">&#9733;</span>
+                                <span class="text-5xl text-[#ccc] cursor-pointer star" style="--i: 3;">&#9733;</span>
+                                <span class="text-5xl text-[#ccc] cursor-pointer star" style="--i: 4;">&#9733;</span>
+                            </div>
+
+                            <label for="username" class=" text-2xl text-[#424242] font-medium capitalize mb-2">Username</label>
+                            <input type="text" name="userName" id="username" placeholder="Enter Name" class="border-2 border-[#f5f5f5] py-2 px-4 text-xl mb-5 outline-none">
+
+                            <label for="user_comment" class="text-2xl text-[#424242] font-medium mb-3">Do you have any thoughts you'd like to share?</label>
+                            <textarea name="userComment" id="user_comment" cols="30" rows="4" placeholder="Your Opinion..." class="w-full h-full text-xl p-5 bg-[#f5f5f5] border border-[#f5f5f5] outline-none resize-none" wrap="hard"></textarea>
+
+                            <!-- Button Group -->
+                            <div class="mt-5 space-x-5">
+                                <button type="submit" id="submit-btn" class="py-2 px-4 bg-[#424242] text-white text-lg cursor-pointer">Submit</button>
+                                <button type="reset" id="cancel-btn" class="py-2 px-4 text-blue-900 text-lg cursor-pointer">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="mt-12 lg:mt-20 lg:grid lg:grid-cols-[435px_1fr] lg:gap-[92px] items-center overflow-hidden lg:[mask-image:linear-gradient(to_left,transparent_0%,black_15%,black_100%)] 
@@ -658,12 +698,12 @@
                         <span class="w-[110px] h-[110px] sm:w-[150px] sm:h-[150px] rounded-full inline-block overflow-hidden max-lg:-translate-y-5 -translate-y-10 max-lg:translate-x-7 lg:translate-x-25"><img src="./images/user-4.jpeg" alt="Profile Pic"></span>
                     </div>
 
-                    <!-- Review Text Content and Slides -->
-                    <div class="px-5 lg:mt-13 overflow-hidden" id="review_slides"> <!-- Remove border class -->
-                        <!-- Review Slide Wrapper -->
+                    <!-- Review Slide Container -->
+                    <div class="px-5 lg:mt-13 overflow-hidden">
+                        <!-- Slide Wrapper -->
                         <div id="slide_track" class="py-5 flex gap-6 relative">
                             <!-- First Review Slide -->
-                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide previousSlide">
+                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide">
                                 <div>
                                     <h3 class="text-2xl text-[#424242] font-semibold">Kerry Rohan</h3>
                                     <span class="text-base text-[#424242]">&#9733;&#9733;&#9733;&#9733;<span class="opacity-20">&#9733;</span></span>
@@ -674,7 +714,7 @@
                             </div>
 
                             <!-- Second Review Slide -->
-                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide active">
+                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide">
                                 <div>
                                     <h3 class="text-2xl text-[#424242] font-semibold">Stephnie Wonzh</h3>
                                     <span class="text-base text-[#424242]">&#9733;&#9733;&#9733;&#9733;<span class="opacity-20">&#9733;</span></span>
@@ -685,7 +725,7 @@
                             </div>
 
                             <!-- Third Review Slide -->
-                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide nextSlide">
+                            <div class=" flex-none shadow-[0px_2px_4px_0px_rgba(0,0,0,0.4)] rounded-lg px-6 py-[28px] w-full lg:w-[485px] slide">
                                 <div>
                                     <h3 class="text-2xl text-[#424242] font-semibold">Jeff West</h3>
                                     <span class="text-base text-[#424242]">&#9733;&#9733;&#9733;&#9733;<span class="opacity-20">&#9733;</span></span>
@@ -721,7 +761,7 @@
 
 
     <!-- Contact Us Section -->
-    <section class="h-[275px] lg:h-[425px] bg-[url('./images/callusnow-bg.jpeg')] bg-no-repeat bg-cover bg-top">
+    <section id="contact" class="h-[275px] lg:h-[425px] bg-[url('./images/callusnow-bg.jpeg')] bg-no-repeat bg-cover bg-top">
         <div class="container mx-auto px-5 h-full">
             <!-- Wrapper -->
             <div class="text-white flex flex-col items-center justify-center w-full h-full ">
